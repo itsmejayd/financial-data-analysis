@@ -5,6 +5,7 @@
 
 ### Added by me, not from template:
 secret.py
+*.vscode
 
 # User-specific files
 *.rsuser
