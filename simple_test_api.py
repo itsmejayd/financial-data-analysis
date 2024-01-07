@@ -1,3 +1,4 @@
+# note: this script is inspired by similar work done here: https://github.com/GabNoaro/financial-analysis (MIT license)
 from secret import api_key  # Create a "secret.py" file with your API Key and import it
 import pandas as pd
 import requests
