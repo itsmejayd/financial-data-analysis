@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualization</title>
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Data Visualization</h1>
+
+    <!-- Table for selected columns -->
+    <h2>Selected Columns Table</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Date</th>
+                <!-- Add more columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in data %}
+                <tr>
+                    <td>{{ entry['symbol'] }}</td>
+                    <td>{{ entry['date'] }}</td>
+                    <!-- Add more columns as needed -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Bar Chart for a specific column (e.g., 'peRatio') -->
+    <h2>Bar Chart for 'peRatio'</h2>
+    <canvas id="peRatioChart"></canvas>
+
+    <script>
+        // Directly embed JSON data
+        var data = {{data_json | safe}};
+    
+        // Extract data for 'peRatio'
+        var peRatioData = data.map(entry => entry['peRatio']);
+    
+        // Create a bar chart for 'peRatio'
+        var ctx = document.getElementById('peRatioChart').getContext('2d');
+        var peRatioChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.map(entry => entry['symbol']),
+                datasets: [{
+                    label: 'PE Ratio',
+                    data: peRatioData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

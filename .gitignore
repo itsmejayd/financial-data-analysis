@@ -6,6 +6,9 @@
 ### Added by me, not from template:
 secret.py
 *.vscode
+financial_data_pickle/
+# Virtual Environment
+venv/
 
 # User-specific files
 *.rsuser
